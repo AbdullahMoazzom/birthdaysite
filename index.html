@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #ff9a9e, #fad0c4);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-top: 2rem;
+      text-shadow: 2px 2px #000;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+
+    #surprise {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #fff;
+      color: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #surprise:hover {
+      background-color: #ff69b4;
+      color: #fff;
+    }
+
+    #message {
+      display: none;
+      font-size: 2rem;
+      margin-top: 20px;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎂 Happy Birthday [Name]! 🎈</h1>
+  <p>Wishing you a day filled with love, laughter, and cake! 🍰</p>
+
+  <button id="surprise">Click for a Surprise 🎁</button>
+  <div id="message">You're amazing! 💖 Hope this year brings you all the joy in the world!</div>
+
+  <!-- Background music -->
+  <audio id="birthdaySong" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Confetti script -->
+  <canvas id="confetti-canvas"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script>
+    // Show hidden message on button click
+    document.getElementById('surprise').addEventListener('click', function () {
+      document.getElementById('message').style.display = 'block';
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
+    });
+
+    // Autoplay music workaround
+    window.addEventListener('click', function () {
+      const music = document.getElementById("birthdaySong");
+      if (music.paused) music.play();
+    });
+  </script>
+</body>
+</html>
