@@ -1,190 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎉 Happy Birthday!</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to top right, #fbc2eb, #a6c1ee);
-      font-family: 'Comic Sans MS', cursive;
-      overflow-x: hidden;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 4em;
-      margin-top: 30px;
-      color: #fff;
-      text-shadow: 2px 2px 5px #000;
-    }
-
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      margin: 20px auto;
-      max-width: 90%;
-    }
-
-    .carousel img {
-      border-radius: 15px;
-      margin: 10px;
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .carousel img:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-    }
-
-    #gift-btn {
-      display: block;
-      margin: 30px auto;
-      padding: 20px 40px;
-      background-color: #fff;
-      color: #ff69b4;
-      border: none;
-      border-radius: 20px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: background 0.3s;
-    }
-
-    #gift-btn:hover {
-      background-color: #ff69b4;
-      color: #fff;
-    }
-
-    #popup {
-      display: none;
-      position: fixed;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      z-index: 999;
-    }
-
-    #popup h2 {
-      color: #ff69b4;
-    }
-
-    #balloons {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    .balloon {
-      position: absolute;
-      bottom: -100px;
-      width: 40px;
-      height: 60px;
-      background: radial-gradient(circle at 30% 30%, #ff69b4, #e75480);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: float 8s infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
-    }
-
-    #confetti-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 998;
-    }
-  </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>HBD love</title>	    
+    <link type="text/css" rel="stylesheet" href="./file/default.css">
+    <script type="text/javascript" src="./file/jquery.min.js"></script>
+    <script type="text/javascript" src="./file/jscex.min.js"></script>
+    <script type="text/javascript" src="./file/jscex-parser.js"></script>
+    <script type="text/javascript" src="./file/jscex-jit.js"></script>
+    <script type="text/javascript" src="./file/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./file/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./file/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./file/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./file/love.js" charset="utf-8"></script>
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("myAudio");
+            audio.play();
+        }
+    </script>
 </head>
 <body>
+    <div id="main">
+        <div id="error"><a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a> (<a href="http://firefox.com.cn/download/">Firefox</a>)</div>
+        <audio autoplay="autoplay" height="100" width="100" id="myAudio">
+            <source src="aud.mp3" type="audio/mp3" />
+            <embed height="100" width="100" src="aud.mp3" />
+        </audio>
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <span class="say">My beautiful wife 💞</span><br>
+                    <span class="say">Happy Birthday 🎈</span><br>
+                    <span class="say">May Allah bless you 🍀</span><br>
+                    <span class="say">And give u many happiness 💕</span><br>
+                    <span class="say">I loved you ❤️</span><br>
+                    <span class="say">And I will always love u 🥺 ❤️</span><br>
+                    <span class="say">Hope u have a great day today ❤️😘</span><br>
+                </div>
+            </div>
+            <div id="clock-box">
+                <span id="clock">577 days 0 hours 0 minutes 0 seconds</span> <!-- Change to "6940 days..." if needed -->
+            </div>
+            <canvas id="canvas" width="1100" height="680"></canvas>
+        </div>
+    </div>
 
-  <h1>🎂 Happy Birthday, Abdullah! 🎈</h1>
+    <script>
+    (function() {
+        var canvas = $('#canvas');
+		
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
 
-  <!-- Balloon animation -->
-  <div id="balloons"></div>
+        var width = canvas.width();
+        var height = canvas.height();        
+        canvas.attr("width", width);
+        canvas.attr("height", height);
 
-  <!-- Carousel -->
-  <div class="carousel" id="photoCarousel">
-    <img src="https://source.unsplash.com/300x200/?birthday,cake" alt="Cake">
-    <img src="https://source.unsplash.com/300x200/?birthday,party" alt="Party">
-    <img src="https://source.unsplash.com/300x200/?birthday,balloons" alt="Balloons">
-    <img src="https://source.unsplash.com/300x200/?birthday,celebration" alt="Celebration">
-    <img src="https://source.unsplash.com/300x200/?birthday,friends" alt="Friends">
-  </div>
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]] 
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
 
-  <!-- Gift Button -->
-  <button onclick="alert('Button clicked!')">Click me</button>
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
 
-  <!-- Pop-up Message -->
-  <div id="popup">
-    <h2>🎊 Surprise! 🎊</h2>
-    <p>Wishing you love, laughter, and cake today and always! 💖</p>
-  </div>
+        canvas.click(function(e) {
+            playAudio();
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
 
-  <!-- Confetti -->
-  <canvas id="confetti-canvas"></canvas>
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
 
-  <!-- Music -->
-  <audio id="music" autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-  <script>
-    const btn = document.getElementById("gift-btn");
-    const popup = document.getElementById("popup");
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
 
-    btn.addEventListener("click", () => {
-      popup.style.display = "block";
-      confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.6 }
-      });
-    });
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
 
-    // Balloon spawner
-    function createBalloon() {
-      const balloon = document.createElement("div");
-      balloon.className = "balloon";
-      balloon.style.left = Math.random() * 100 + "vw";
-      balloon.style.animationDuration = 4 + Math.random() * 4 + "s";
-      document.getElementById("balloons").appendChild(balloon);
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
 
-      setTimeout(() => {
-        balloon.remove();
-      }, 10000);
-    }
+        var textAnimate = eval(Jscex.compile("async", function () {
+            $("#code").show().typewriter();
+        }));
+	    
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+            textAnimate().start();
+        }));
 
-    setInterval(createBalloon, 300);
-
-    // Music Autoplay Fix
-    document.addEventListener('click', () => {
-      document.getElementById("music").play();
-    }, { once: true });
-  </script>
-
+        runAsync().start();
+    })();
+    </script>
 </body>
 </html>
-
-
